@@ -55,6 +55,3 @@ pie(a, labels = lbls,
     main="Diagramme circulaire de l'inflammation de la vessie ")
 
 # Les deux classes sont équilirées
-
-
-
