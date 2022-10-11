@@ -1,5 +1,5 @@
 # Importer dataset
-df <- read_csv("Inflammation.csv")
+df <- read_csv("Data\\Inflammation.csv")
 
 # Encodage des variables qualitatives
 df[['Occurrence of nausea']] = factor(df[['Occurrence of nausea']],
