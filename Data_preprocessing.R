@@ -34,6 +34,7 @@ df[['Inflammation of urinary bladder']] = factor(df[['Inflammation of urinary bl
 
 # Normalisation de la variable 'Temperature of patient'
 
+
 # Vérification du déséquilibre des classes
 
 
