@@ -8,12 +8,15 @@ library(readxl)
 library(ROCR)
 library(pROC)
 library(class)
-library(dplyr)
 library(magrittr)
 library(factoextra)
 library(ggbiplot)
 library(plotly)
 library(bslib)
+library(plyr)
+library(readr)
+library(caret)
+
 
 # Using custom shiny theme
 thematic::thematic_shiny(font = "auto")
