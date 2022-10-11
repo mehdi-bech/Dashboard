@@ -1,5 +1,6 @@
-L'objectif ici est de concevoir un modèle capable de diagnostiquer l'inflammation de la vessie conditionnée par les symptômes du patient.
+L'objectif est de concevoir un modèle capable de diagnostiquer l'inflammation de la vessie conditionnée par les symptômes du patient.
 
-Le fichier de données urinary_inflammation.csv contient les données de cette étude. Le nombre d'instances (lignes) est de 120, et le nombre de variables (colonnes) est de 7.
+Le fichier "Inflammation.csv" contient les données de cette étude. Le nombre d'instances (lignes) est 120, et le nombre de variables (colonnes) est 7.
 
-Le nombre de variables d'entrée, ou attributs pour chaque échantillon, est de 7. Toutes les variables d'entrée, à l'exception de la température, sont binaires et représentent la symptomatologie des patients (douleur, nausée, sensation de brûlure, etc... Cet ensemble de données contient les variables suivantes résumées sous forme de tableau á droite :
+Le nombre de variables d'entrée, ou attributs pour chaque échantillon, est 7. Toutes les variables d'entrée, à l'exception de la température, sont binaires et représentent la symptomatologie des patients (douleur, nausée, sensation de brûlure, etc...). Cet ensemble de données contient les variables suivantes résumées sous forme de tableau :
+
