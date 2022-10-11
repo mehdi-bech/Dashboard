@@ -28,16 +28,33 @@ df[['Inflammation of urinary bladder']] = factor(df[['Inflammation of urinary bl
 
 # Vérification des outliers 
 
+boxplot(df['Temperature of patient'])
 
 # Vérification des valeurs manquantes
 
+print(apply(df, 2, anyNA))
+
+#Shapiro-Wilk normality test pour choisir entre la normalisation et la standarisation de la variable 'Temperature of patient' 
+
+shapiro.test(df[['Temperature of patient']])
+
+#p-value = 9.702e-08 < 0.05 donc la variable ne suit pas la loi normale donc on choisit la normalisation
 
 # Normalisation de la variable 'Temperature of patient'
 
+process <- preProcess(as.data.frame(df[['Temperature of patient']])
+                      , method=c("range"))
+df['Temperature of patient'] <- predict(process
+                      , as.data.frame(df[['Temperature of patient']]))
 
 # Vérification du déséquilibre des classes
 
+a <- table(df['Inflammation of urinary bladder'])
+lbls <- paste(names(a), "\n", a, sep="")
+pie(a, labels = lbls,
+    main="Diagramme circulaire de l'inflammation de la vessie ")
 
+# Les deux classes sont équilirées
 
 
 

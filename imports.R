@@ -24,10 +24,8 @@ thematic::thematic_shiny(font = "auto")
 # Defining categorical variables
 categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuous need for urination)',
                  'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
-                 'decision: Inflammation of urinary bladder ' )
+                 'Inflammation of urinary bladder ' )
 
-# Reading dataset(s)
-df <- read.csv("Inflammation.csv")
 
 
 
