@@ -2,29 +2,15 @@
 df <- read_csv("Data\\Inflammation.csv")
 
 # Encodage des variables qualitatives
-df[['Occurrence of nausea']] = factor(df[['Occurrence of nausea']],
-                  levels = c('no','yes'),
-                  labels = c(0, 1))
 
-df[['Lumbar pain']] = factor(df[['Lumbar pain']],
-                  levels = c('no','yes'),
-                  labels = c(0, 1))
+qualitative_var <- c("Occurrence of nausea", "Lumbar pain", "Urine pushing", "Micturition pains",
+                     "Burning of urethra", "Inflammation of urinary bladder")
 
-df[['Urine pushing']] = factor(df[['Urine pushing']],
+for (q in qualitative_var) {
+  df[[q]] = factor(df[[q]],
                   levels = c('no','yes'),
-                  labels = c(0, 1))
-
-df[['Micturition pains']] = factor(df[['Micturition pains']],
-                  levels = c('no','yes'),
-                  labels = c(0, 1))
-
-df[['Burning of urethra']] = factor(df[['Burning of urethra']],
-                  levels = c('no','yes'),
-                  labels = c(0, 1))
-
-df[['Inflammation of urinary bladder']] = factor(df[['Inflammation of urinary bladder']],
-                  levels = c('no','yes'),
-                  labels = c(0, 1))
+                  labels = c(0, 1)) 
+}
 
 # Vérification des outliers 
 
