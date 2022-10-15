@@ -42,6 +42,6 @@ pie(a, labels = lbls,
 
 # Les deux classes sont équilirées
 
-# Exportation de la nouvelle base de données prétraitée
+# Exportation de la nouvelle base de données prétraitée "Data_encoded"
 
-write.csv(df,"Data\\Data_encoded.csv", row.names = TRUE)
+write.csv(df,"Data\\Data_encoded.csv", row.names = FALSE)
