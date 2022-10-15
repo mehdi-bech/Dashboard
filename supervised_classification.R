@@ -15,13 +15,13 @@ set.seed(1)
 split = sample.split(dataset, SplitRatio = 0.75)
 training_set = subset(dataset, split == TRUE)
 test_set = subset(dataset, split == FALSE)
+head(training_set)
 
 # Ajustement de la régression logistique à l'ensemble d'entraînement
 
-x <- model.matrix(Inflammation.of.urinary.bladder ~., training_set)[,-1]
-y <- ifelse(training_set$Inflammation.of.urinary.bladder == "pos", 1, 0)
-y <- model.matrix(Inflammation.of.urinary.bladder ~., training_set)[,-1]
-head(y)
+x = model.matrix(Inflammation.of.urinary.bladder ~., training_set)[,-1]
+y = model.matrix(training_set['Inflammation.of.urinary.bladder'])
+
 
 classifier = glm(formula = Inflammation.of.urinary.bladder ~ Temperature.of.patient 
                  + Occurrence.of.nausea + Lumbar.pain + Urine.pushing + Micturition.pains 
