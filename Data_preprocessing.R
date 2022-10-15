@@ -41,3 +41,7 @@ pie(a, labels = lbls,
     main="Diagramme circulaire de l'inflammation de la vessie ")
 
 # Les deux classes sont équilirées
+
+# Exportation de la nouvelle base de données prétraitée
+
+write.csv(df,"Data\\Data_encoded.csv", row.names = TRUE)
