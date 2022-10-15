@@ -1,14 +1,13 @@
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-  
-  output$disttPlot <- renderPlot({
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-    
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white',
-         xlab = 'Waiting time to next eruption (in mins)',
-         main = 'Histogram of waiting times')
+  df <- read_csv("Data\\Inflammation.csv")
+
+  observeEvent(input$go, {
+    showModal(modalDialog(
+      size='l',
+      renderDataTable(df),
+      footer = NULL,
+      easyClose = TRUE
+    ))
   })
 }
