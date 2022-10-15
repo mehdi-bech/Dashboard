@@ -1,21 +1,46 @@
+source("imports.R")
+
 ui <- fluidPage(
-  
-  #
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
-    ),
+
+  titlePanel("Dashboard"),
+
+  navbarPage("Menu",
+############################################## Page ##############################################  
+
+    tabPanel("Objectif",
+      sidebarLayout(
+
+        sidebarPanel( 
+          h5(
+          includeHTML("Objectif text.html"),          
+          ),
+        ),
+        mainPanel(
+          h5(
+          includeHTML("Table.html"),
+          h2("\n"),
+          actionButton("go", "Show")
+            ),
+                  )             
+                    ),
+
+            ),
+
+############################################## Page ##############################################
     
-    # Show a plot of the generated distribution
-    mainPanel(
-      plotOutput("disttPlot")
+    tabPanel("Analyse exploratoire des données",
+      tabsetPanel(
+        tabPanel("Analyse unidimensionnelle","Empty"),
+        tabPanel('Analyse bidimensionnelle', "Empty")
+                  )
+            ),
+############################################## Page ##############################################  
+    
+    tabPanel("Entraınement de modeles",
+      tabsetPanel(
+        tabPanel("Classification supervisee","Empty"),
+        tabPanel('Evaluation', "Empty")
+                  )
+            )
     )
-  )
 )
