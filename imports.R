@@ -1,4 +1,5 @@
-# Loading libraries
+# Chargement des librairies
+
 library(shiny)
 library(markdown)
 library(shinythemes)
@@ -13,18 +14,13 @@ library(class)
 library(magrittr)
 library(factoextra)
 library(ggbiplot)
+library(ggplot2)
 library(plotly)
 library(bslib)
 library(plyr)
 library(readr)
 library(caret)
-library(caTools)
 library(glmnet)
 
 # Using custom shiny theme
 thematic::thematic_shiny(font = "auto")
-
-# Defining categorical variables
-categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuous need for urination)',
-                 'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
-                 'Inflammation of urinary bladder ' )
