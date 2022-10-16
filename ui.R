@@ -5,8 +5,9 @@ ui <- fluidPage(
   titlePanel("Dashboard"),
 
   navbarPage("Menu",
+    
 ############################################## Page ##############################################  
-    tabPanel("Objectif pipi2",
+    tabPanel("Objectif",
       sidebarLayout(
 
         sidebarPanel( 

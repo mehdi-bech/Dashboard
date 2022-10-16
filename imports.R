@@ -13,6 +13,8 @@ library(class)
 library(magrittr)
 library(factoextra)
 library(ggbiplot)
+library(ggeasy)
+library(reshape2)
 library(plotly)
 library(bslib)
 library(plyr)
@@ -21,8 +23,13 @@ library(caret)
 library(caTools)
 library(glmnet)
 
+
 # Using custom shiny theme
 thematic::thematic_shiny(font = "auto")
+
+#Importation des donnees
+
+df <- read_csv("Data\\Inflammation.csv")
 
 # Defining categorical variables
 categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuous need for urination)',
