@@ -38,11 +38,11 @@ true_neg = (true_y==0) & (y_pred==0)
 false_pos = (true_y==0) & (y_pred==1)
 false_neg = (true_y==1) & (y_pred==0)
 
-conf_mat_1 <- matrix(c(sum(true_pos), sum(false_pos),
+conf_mat_1 = matrix(c(sum(true_pos), sum(false_pos),
                      sum(false_neg), sum(true_neg)), 2, 2)
 
-colnames(conf_mat_1) <- c('Yhat = 1', 'Yhat = 0')
-rownames(conf_mat_1) <- c('Y = 1', 'Y = 0')
+colnames(conf_mat_1) = c('Yhat = 1', 'Yhat = 0')
+rownames(conf_mat_1) = c('Y = 1', 'Y = 0')
 
 # Precision (TP / (TP + FP))
 
@@ -54,7 +54,7 @@ recal = conf_mat_1[1, 1] / sum(conf_mat_1[1,])
 
 # F-score (TN / (TN + FP))
 
-f_score = conf_mat_1[2, 2] / sum(conf_mat_1[2,])
+f1_score = 2* ((precision*recal) / (precision+recal))
 
 # Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
 
@@ -63,23 +63,9 @@ accuracy = (conf_mat_1[1,1]+conf_mat_1[2,2]) / (conf_mat_1[1,1]+conf_mat_1[2,1]+
 
 # Courbe ROC
 
-    # Ordonner les probabilités
-
-idx = order(-prob_pred)
-recall_1 = cumsum(true_y[idx] == 1) / sum(true_y == 1)
-specificity_1 = (sum(true_y == 0) - cumsum(true_y[idx] == 0)) / sum(true_y == 0)
-roc_df_1 = data.frame(recall = recall_1, specificity = specificity_1)
-
-    # Tracez les métriques
-
-library(ggplot2)
-ROC1 = ggplot(roc_df_1, aes(x=specificity, y=recall)) +
-  geom_line(color='blue') + 
-  scale_x_reverse(expand=c(0, 0)) +
-  scale_y_continuous(expand=c(0, 0)) + 
-  geom_line(data=data.frame(x=(0:100) / 100), aes(x=x, y=1-x),
-            linetype='dotted', color='red') +
-  theme_bw() + theme(plot.margin=unit(c(5.5, 10, 5.5, 5.5), "points"))
+library(pROC)
+roc_score = roc(test_set[,7], y_pred) 
+plot (roc_score ,main ="ROC curve -- Régression Logistique ")
 
 # La métrique AUC 
 
