@@ -42,17 +42,22 @@ conf_mat_3 <- matrix(c(sum(true_pos), sum(false_pos),
 colnames(conf_mat_3) <- c('Yhat = 1', 'Yhat = 0')
 rownames(conf_mat_3) <- c('Y = 1', 'Y = 0')
 
-# Precision (TP / (TP + FP))
+# Précision (TP / (TP + FP))
 
 precision = conf_mat_3[1, 1] / sum(conf_mat_3[,1])
 
-# Recall (TP / (TP + FN))
+# Recall "sensibilité" (TP / (TP + FN))
 
 recal = conf_mat_3[1, 1] / sum(conf_mat_3[1,])
 
-# F-score (TN / (TN + FP))
+# F-score "specificité" (TN / (TN + FP))
 
 f_score = conf_mat_3[2, 2] / sum(conf_mat_3[2,])
+
+# Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
+
+accuracy = (conf_mat_3[1,1]+conf_mat_3[2,2]) / (conf_mat_3[1,1]+conf_mat_3[2,1]+
+                                                conf_mat_3[2,2]+conf_mat_3[1,2])
 
 # Courbe ROC
 

@@ -15,6 +15,8 @@ library(magrittr)
 library(factoextra)
 library(ggbiplot)
 library(ggplot2)
+library(ggeasy)
+library(reshape2)
 library(plotly)
 library(bslib)
 library(plyr)
@@ -22,5 +24,8 @@ library(readr)
 library(caret)
 library(glmnet)
 
+
 # Using custom shiny theme
+
 thematic::thematic_shiny(font = "auto")
+

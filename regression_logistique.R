@@ -56,6 +56,11 @@ recal = conf_mat_1[1, 1] / sum(conf_mat_1[1,])
 
 f_score = conf_mat_1[2, 2] / sum(conf_mat_1[2,])
 
+# Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
+
+accuracy = (conf_mat_1[1,1]+conf_mat_1[2,2]) / (conf_mat_1[1,1]+conf_mat_1[2,1]+
+                                                  conf_mat_1[2,2]+conf_mat_1[1,2])
+
 # Courbe ROC
 
     # Ordonner les probabilités
