@@ -23,7 +23,6 @@ library(bslib)
 library(plyr)
 library(readr)
 library(caret)
-library(caTools)
 library(glmnet)
 
 
@@ -31,7 +30,6 @@ library(glmnet)
 
 thematic::thematic_shiny(font = "auto")
 
-<<<<<<< HEAD
 #Importation des donnees
 
 df <- read.csv("Data\\Inflammation.csv", check.names = FALSE)
@@ -41,6 +39,3 @@ categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuo
                  'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
                  'Inflammation of urinary bladder ' )
 
-
-=======
->>>>>>> 2fd08b1a6bb1e49f61c4500d12adeede2700c5ce
