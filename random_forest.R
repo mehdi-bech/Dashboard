@@ -62,26 +62,34 @@ accuracy = (conf_mat_2[1,1]+conf_mat_2[2,2]) / (conf_mat_2[1,1]+conf_mat_2[2,1]+
 # Courbe ROC
 
 library(pROC)
-roc_score = roc(test_set[,7], y_pred) 
-plot (roc_score ,main ="ROC curve -- Random forest ", col= "blue")
+par (pty = "s")
+roc.info2 = roc(test_set[,7], y_pred, 
+                plot= TRUE, 
+                col= "#377eb8", 
+                lwd = 3,
+                main ="ROC curve -- Random Forest ",
+                percent = TRUE) 
 
 # La métrique AUC 
 
     # Calcul de l'intégration numérique du AUC
 
-idx <- order(-y_pred)
-# Compute cumulative recall and specificity 
-recall <- cumsum(true_y[idx] == 1) / sum(true_y == 1)
-specificity <- (sum(true_y == 0) - cumsum(true_y[idx] == 0)) / sum(true_y == 0)
-roc_df_2 <- data.frame(recall = recall, specificity = specificity)
-head(roc_df_2)
+roc_df2 = data.frame(
+        TP = roc.info2$sensitivities*100,
+        FP = (1-roc.info2$sensitivities)*100,
+        thresholds = roc.info2$thresholds)
 
     # Illustration de la valeur AUC
 
-AUC2 <- ggplot(roc_df_2, aes(specificity)) +
-  geom_ribbon(aes(ymin=0, ymax=recall), fill='blue', alpha=.3) +
-  scale_x_reverse(expand=c(0, 0)) +
-  scale_y_continuous(expand=c(0, 0)) +
-  labs(y='recall') +
-  theme_bw() + theme(plot.margin=unit(c(5.5, 10, 5.5, 5.5), "points"))
+AUC2 = roc(test_set[,7], y_pred, 
+           plot= TRUE, 
+           col= "#377eb8", 
+           lwd = 3,
+           print.auc = TRUE,
+           print.auc.x= 45,
+           main ="AUC illustration",
+           percent = TRUE,
+           partial.auc = c(100, 0),
+           auc.polygon = TRUE,
+           auc.polygon.col = "#377eb822")
 

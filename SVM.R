@@ -62,21 +62,33 @@ accuracy = (conf_mat_3[1,1]+conf_mat_3[2,2]) / (conf_mat_3[1,1]+conf_mat_3[2,1]+
 # Courbe ROC
 
 library(pROC)
-roc_score = roc(test_set[,7], y_pred) 
-plot (roc_score ,main ="ROC curve -- SVM", col= "blue")
+par (pty = "s")
+roc.info3 = roc(test_set[,7], y_pred, 
+                plot= TRUE, 
+                col= "#377eb8", 
+                lwd = 3,
+                main ="ROC curve -- SVM ",
+                percent = TRUE) 
 
 # La métrique AUC 
 
     # Calcul de l'intégration numérique du AUC
 
-sum(roc_df_3$recall_3[-1] * diff(1-roc_df_3$specificity_3))
-head(roc_df_3)
+roc_df3 = data.frame(
+      TP = roc.info3$sensitivities*100,
+      FP = (1-roc.info3$sensitivities)*100,
+      thresholds = roc.info3$thresholds)
 
     # Illustration de la valeur AUC
 
-AUC3 <- ggplot(roc_df_3, aes(specificity_3)) +
-  geom_ribbon(aes(ymin=0, ymax=recall_2), fill='blue', alpha=.3) +
-  scale_x_reverse(expand=c(0, 0)) +
-  scale_y_continuous(expand=c(0, 0)) +
-  labs(y='recall') +
-  theme_bw() + theme(plot.margin=unit(c(5.5, 10, 5.5, 5.5), "points"))
+AUC3 = roc(test_set[,7], y_pred, 
+           plot= TRUE, 
+           col= "#377eb8", 
+           lwd = 3,
+           print.auc = TRUE,
+           print.auc.x= 45,
+           main ="AUC illustration",
+           percent = TRUE,
+           partial.auc = c(100, 0),
+           auc.polygon = TRUE,
+           auc.polygon.col = "#377eb822")
