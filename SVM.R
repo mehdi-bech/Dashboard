@@ -63,7 +63,7 @@ accuracy = (conf_mat_3[1,1]+conf_mat_3[2,2]) / (conf_mat_3[1,1]+conf_mat_3[2,1]+
 
 library(pROC)
 roc_score = roc(test_set[,7], y_pred) 
-plot (roc_score ,main ="ROC curve -- SVM")
+plot (roc_score ,main ="ROC curve -- SVM", col= "blue")
 
 # La métrique AUC 
 

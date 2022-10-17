@@ -65,7 +65,7 @@ accuracy = (conf_mat_1[1,1]+conf_mat_1[2,2]) / (conf_mat_1[1,1]+conf_mat_1[2,1]+
 
 library(pROC)
 roc_score = roc(test_set[,7], y_pred) 
-plot (roc_score ,main ="ROC curve -- Régression Logistique ")
+plot(roc_score ,main ="ROC curve -- Régression Logistique ", col= "blue")
 
 # La métrique AUC 
 

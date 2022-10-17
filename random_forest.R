@@ -63,20 +63,25 @@ accuracy = (conf_mat_2[1,1]+conf_mat_2[2,2]) / (conf_mat_2[1,1]+conf_mat_2[2,1]+
 
 library(pROC)
 roc_score = roc(test_set[,7], y_pred) 
-plot (roc_score ,main ="ROC curve -- Random forest ")
+plot (roc_score ,main ="ROC curve -- Random forest ", col= "blue")
 
 # La métrique AUC 
 
     # Calcul de l'intégration numérique du AUC
 
-sum(roc_df_2$recall_2[-1] * diff(1-roc_df_2$specificity_2))
+idx <- order(-y_pred)
+# Compute cumulative recall and specificity 
+recall <- cumsum(true_y[idx] == 1) / sum(true_y == 1)
+specificity <- (sum(true_y == 0) - cumsum(true_y[idx] == 0)) / sum(true_y == 0)
+roc_df_2 <- data.frame(recall = recall, specificity = specificity)
 head(roc_df_2)
 
     # Illustration de la valeur AUC
 
-AUC2 <- ggplot(roc_df_2, aes(specificity_2)) +
-  geom_ribbon(aes(ymin=0, ymax=recall_2), fill='blue', alpha=.3) +
+AUC2 <- ggplot(roc_df_2, aes(specificity)) +
+  geom_ribbon(aes(ymin=0, ymax=recall), fill='blue', alpha=.3) +
   scale_x_reverse(expand=c(0, 0)) +
   scale_y_continuous(expand=c(0, 0)) +
   labs(y='recall') +
   theme_bw() + theme(plot.margin=unit(c(5.5, 10, 5.5, 5.5), "points"))
+
