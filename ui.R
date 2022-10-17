@@ -30,7 +30,27 @@ ui <- fluidPage(
     
     tabPanel("Analyse exploratoire des données",
       tabsetPanel(
-        tabPanel("Analyse unidimensionnelle","Empty"),
+        tabPanel("Analyse unidimensionnelle",
+          sidebarLayout(
+            sidebarPanel(
+              selectInput("SelectUniv",
+                          label = h4("Sélectionner une variable pour l'analyse univariée"),
+                          choices = sort(names(df)),
+                          selected=1
+                                )
+              ),
+            mainPanel(
+              fluidRow(
+                  column(6, plotOutput(outputId = "oplot_box_bar")),
+                  column(6, plotOutput(outputId = "oplot_histo_pie"))
+                      ),
+              fluidRow(
+                  column(6, plotlyOutput(outputId = "oplot_Cummul")),
+                  column(6, tableOutput(outputId = "oStat"))
+                      )
+            )
+          )
+        ),
         tabPanel('Analyse bidimensionnelle', "Empty")
                   )
             ),

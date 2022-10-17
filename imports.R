@@ -5,6 +5,7 @@ library(shinythemes)
 library(reshape2)
 library(ROCR)
 library(class)
+library(data.table)
 library(dplyr)
 library(readxl)
 library(ROCR)
@@ -29,9 +30,11 @@ thematic::thematic_shiny(font = "auto")
 
 #Importation des donnees
 
-df <- read_csv("Data\\Inflammation.csv")
+df <- read.csv("Data\\Inflammation.csv", check.names = FALSE)
 
 # Defining categorical variables
 categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuous need for urination)',
                  'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
                  'Inflammation of urinary bladder ' )
+
+

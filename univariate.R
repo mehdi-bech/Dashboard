@@ -1,22 +1,37 @@
+source("imports.R")
+# Affichage de la table statistiques pour les donees 
+statQ <- function(var)
+{
+    
+    if (is.numeric(df[, var]))
+    {
+          tt=data.frame(
+          stat = c('Min', 'Quantile 25%', 'Médiane', 'Quantile 75%', 'Max', 'Moyenne', 'Écart type'),
+          values = c(quantile(df[, 'Temperature of patient']), mean(df[, 'Temperature of patient']), sd(df[, 'Temperature of patient']))
+                        )   
+        return(setDT(tt))
+    }
+    else
+    {      tt = as.data.frame(table(df[, var]))
+           tt = cbind(tt, cumsum(tt[[2]]))
+           tt = cbind(tt,
+                       tt[[2]]/nrow(df)*100,
+                       tt[[3]]/nrow(df)*100)
+           colnames(tt) <- c(var, "Effectifs", "Effectifs Cum.",
+                             "Fréquences", "Fréquences Cum.")
 
-
-# Affichage de la table statistiques pour les donees quantitatives
-quantitativeTabStats <- reactive({
-  data.frame(
-      stat = c('Min', 'Quantile 25%', 'Médiane', 'Quantile 75%', 'Max', 'Moyenne', 'Écart type'),
-      values = c(quantile(df[, input$univariateSelect]), mean(df[, input$univariateSelect]), sd(df[, input$univariateSelect]))
-  )
-})
-
-
+        return(setDT(tt))
+    }
+}
 
 plot_box_bar <- function(var)
 {
-	if (is.numeric(df[, var]))
+	
+    if (is.numeric(df[, var]))
 	{
 	    df1=df %>% select(var)
         colnames(df1)[1] = "col"
-        fig <- ggplot(df1, aes(x="", y=col)) + 
+            fig <- ggplot(df1, aes(x="", y=col)) + 
                 geom_boxplot()+
                 xlab(var) + ylab("Valeur")+
                 ggtitle(paste('Boîte à moustaches de ', var))+
@@ -27,9 +42,10 @@ plot_box_bar <- function(var)
 	}
 	else
 	{
-	    temp1 <- as.data.frame(table(df[, var]))
-
-	    fig <- ggplot(temp1, aes(x=Var1, y=Freq, fill=Var1))+
+        
+        temp1 <- as.data.frame(table(df[, var]))
+        colnames(temp1)[1] = "Var1"
+	       fig <- ggplot(temp1, aes(x=Var1, y=Freq, fill=Var1))+
                 geom_bar(stat="identity") +
                 scale_fill_brewer(palette="Blues")+
                 xlab(var) + ylab("Fréquence")+
@@ -40,10 +56,10 @@ plot_box_bar <- function(var)
 	}
 }
 
+
 plot_histo_pie <- function(var)
 {
-    temp1 <- as.data.frame(table(df[, var]))
-
+    
     if (is.numeric(df[, var]))
     {
         df1=df %>% select(var)
@@ -57,7 +73,8 @@ plot_histo_pie <- function(var)
     }
     else
     {
-        temp1 <- as.data.frame(table(df[, var]))        
+        temp1 <- as.data.frame(table(df[, var]))
+        colnames(temp1)[1] = "Var1"
         fig <-  ggplot(temp1, aes(x="", y=Freq, fill=Var1)) +
                 geom_bar(stat="identity", width=1) +
                 coord_polar("y", start=0)+
@@ -68,17 +85,18 @@ plot_histo_pie <- function(var)
     }
 }
 
-plotCumulativeOccurences <- function(var)
+
+plot_Cummul <- function(var)
 {
-    if(! is.numeric(df[, var])) return(NULL)
-
-    # Getting data from histogram
-    tmp.hist <- hist( df[, var], plot = FALSE,
-                      right = FALSE)
-
-    fig <- plot_ly(x = tmp.hist$breaks[-1], y = cumsum(tmp.hist$counts), mode = 'lines+markers')
-    fig <- fig %>% layout(title = paste('Population cumulative curve of', var, sep = ' '))
-
-    return(fig)
+    if (is.numeric(df[, var]))
+    {
+        tmp.hist <- hist( df[, var], plot = FALSE, right = FALSE)
+        fig <- plot_ly(x = tmp.hist$breaks[-1], y = cumsum(tmp.hist$counts), mode = 'lines+markers')
+        fig <- fig %>% layout(title = paste('Courbe cumulative de \n ', var, sep = ' '))
+        return(fig)
+    }
+    else
+    {
+        return(NULL)
+    }
 }
-	
