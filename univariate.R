@@ -20,9 +20,21 @@ statQ <- function(var)
            colnames(tt) <- c(var, "Effectifs", "Effectifs Cum.",
                              "Fréquences", "Fréquences Cum.")
 
+<<<<<<< HEAD
         return(setDT(tt))
     }
 }
+=======
+# Affichage de la table statistiques pour les donees quantitatives
+quantitativeTabStats <- reactive({
+  data.frame(
+      stat = c('Min', 'Quantile 25%', 'Médiane', 'Quantile 75%', 'Max', 'Moyenne', 'Écart type'),
+      values = c(quantile(df[, input$univariateSelect]), mean(df[, input$univariateSelect]), sd(df[, input$univariateSelect]))
+  )
+})
+
+
+>>>>>>> 2fd08b1a6bb1e49f61c4500d12adeede2700c5ce
 
 plot_box_bar <- function(var)
 {

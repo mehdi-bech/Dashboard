@@ -1,4 +1,5 @@
-# Loading libraries
+# Chargement des librairies
+
 library(shiny)
 library(markdown)
 library(shinythemes)
@@ -14,6 +15,7 @@ library(class)
 library(magrittr)
 library(factoextra)
 library(ggbiplot)
+library(ggplot2)
 library(ggeasy)
 library(reshape2)
 library(plotly)
@@ -26,8 +28,10 @@ library(glmnet)
 
 
 # Using custom shiny theme
+
 thematic::thematic_shiny(font = "auto")
 
+<<<<<<< HEAD
 #Importation des donnees
 
 df <- read.csv("Data\\Inflammation.csv", check.names = FALSE)
@@ -38,3 +42,5 @@ categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuo
                  'Inflammation of urinary bladder ' )
 
 
+=======
+>>>>>>> 2fd08b1a6bb1e49f61c4500d12adeede2700c5ce
