@@ -42,4 +42,3 @@ plt_box_bar <- function(first_feature, second_feature)
             horizontal=FALSE) )
     }
     }
-plt_box_bar ('Occurrence of nausea','Lumbar pain')
