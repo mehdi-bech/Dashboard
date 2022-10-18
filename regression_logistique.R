@@ -39,6 +39,10 @@ coef(classifier1)
 prob_pred = predict(classifier1, type="response", newdata = test_set[-7])
 y_pred = ifelse(prob_pred > 0.5, 1, 0)
 
+
+cm = table(test_set[, 7], y_pred)
+
+
 # Construction de la matrice de confusion 
 
 true_y = as.numeric(test_set$Inflammation.of.urinary.bladder == 1)
@@ -71,41 +75,59 @@ f1_score = 2* ((precision*recal) / (precision+recal))
 accuracy = (conf_mat_1[1,1]+conf_mat_1[2,2]) / (conf_mat_1[1,1]+conf_mat_1[2,1]+
                                                   conf_mat_1[2,2]+conf_mat_1[1,2])
 
-# Courbe ROC
 
-library(pROC)
-
-roc1 = function(){
+roc1 = function(){ 
   
+  classifier1 = gam( formula = Inflammation.of.urinary.bladder ~ Temperature.of.patient 
+                     + Occurrence.of.nausea + Lumbar.pain + Urine.pushing + Micturition.pains 
+                     + Burning.of.urethra,
+                     family = binomial("logit"),
+                     data = training_set )
   
+  # Prédiction des résultats de l'ensemble de test
+  
+  prob_pred = predict(classifier1, type="response", newdata = test_set[-7])
+  y_pred = ifelse(prob_pred > 0.5, 1, 0)
+  
+  # Courbe ROC
+  
+  library(pROC)
   par (pty = "s")
-  roc.info1 = roc(test_set[,7], y_pred, 
-               plot= TRUE, 
-               col= "#377eb8", 
-               lwd = 3,
-               main ="ROC curve -- Régression Logistique ",
-               percent = TRUE) 
+  return(roc(test_set[,7], y_pred, 
+             plot= TRUE, 
+             col= "#377eb8", 
+             lwd = 3,
+             main ="ROC curve -- Régression Logistique ",
+             percent = TRUE))
 }
-# La métrique AUC 
-
-    # Calcul de l'intégration numérique du AUC
-
-roc_df1 = data.frame(
-          TP = roc.info1$sensitivities*100,
-          FP = (1-roc.info1$sensitivities)*100,
-          thresholds = roc.info1$thresholds)
 
     # Illustration de la valeur AUC
 
-AUC1 = roc(test_set[,7], y_pred, 
-           plot= TRUE, 
-           col= "#377eb8", 
-           lwd = 3,
-           print.auc = TRUE,
-           print.auc.x= 45,
-           main ="AUC illustration",
-           percent = TRUE,
-           partial.auc = c(100, 0),
-           auc.polygon = TRUE,
-           auc.polygon.col = "#377eb822")
-
+auc1 = function(){ 
+  
+  classifier1 = gam( formula = Inflammation.of.urinary.bladder ~ Temperature.of.patient 
+                     + Occurrence.of.nausea + Lumbar.pain + Urine.pushing + Micturition.pains 
+                     + Burning.of.urethra,
+                     family = binomial("logit"),
+                     data = training_set )
+  
+  # Prédiction des résultats de l'ensemble de test
+  
+  prob_pred = predict(classifier1, type="response", newdata = test_set[-7])
+  y_pred = ifelse(prob_pred > 0.5, 1, 0)
+  
+  # Illustration de la valeur AUC
+  
+  par (pty = "s")
+  return(roc(test_set[,7], y_pred, 
+      plot= TRUE, 
+      col= "#377eb8", 
+      lwd = 3,
+      print.auc = TRUE,
+      print.auc.x= 45,
+      main ="AUC illustration",
+      percent = TRUE,
+      partial.auc = c(100, 0),
+      auc.polygon = TRUE,
+      auc.polygon.col = "#377eb822"))
+}

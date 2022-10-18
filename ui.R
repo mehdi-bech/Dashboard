@@ -1,5 +1,6 @@
 source("imports.R")
 source("random_forest.R")
+source("regression_logistique.R")
 
 ui <- fluidPage(
 
@@ -65,9 +66,9 @@ ui <- fluidPage(
         tabPanel("Régression logistique",
                  sidebarLayout(
                    sidebarPanel(
-                     h3('Contexte :'),
+                     h4('Contexte :'),
                      br(),
-                     htmlOutput(outputId = 'classif_info'),
+                     htmlOutput(outputId = 'rl_info'),
                      br()),
                    mainPanel(
                      fluidRow(
@@ -75,7 +76,7 @@ ui <- fluidPage(
                        column(6, plotOutput(outputId = "AUC1"))
                      ),
                      fluidRow(
-                       column(6, plotOutput(outputId = "param1"))
+                       #column(6, tableOutput(outputId = "cm1"))
                        )
                    )
                  )
@@ -83,23 +84,27 @@ ui <- fluidPage(
         tabPanel("Forêt d'arbres de décision (Random Forest)", 
                  sidebarLayout(
                    sidebarPanel(
-                     h3('Contexte :'),
+                     h4('Contexte :'),
                      br(),
-                     htmlOutput(outputId = 'classif_info'),
+                     htmlOutput(outputId = 'rf_info'),
                      br(),
                      sliderInput(
                        'ka',
                        strong("Selectionner le Nombre d'arbres de décision :"),
                        value = 10,
                        min = 1,
-                       max = 100)),
+                       max = 40)),
                    mainPanel(
                      fluidRow(
                        column(6, plotOutput(outputId = "ROC2")),
                        column(6, plotOutput(outputId = "AUC2"))
                      ),
                      fluidRow(
-                       column(6, tableOutput(outputId = "param2"))
+                         column(6,tableOutput(outputId = "param2")),
+                         p("La précision est : ", textOutput(outputId = "pre2") ),
+                         p("La sensibilité est : ", textOutput(outputId = "rec2")),
+                         p("Le F1-score est : ", textOutput(outputId = "fsco2") ),
+                         p("L'accuracy totale est : ", textOutput(outputId = "acc2") ),
                      )
                    )
                  )

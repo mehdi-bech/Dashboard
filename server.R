@@ -1,5 +1,6 @@
 source("imports.R")
 source("univariate.R")
+source("regression_logistique.R")
 
 server <- function(input, output) {
   
@@ -33,12 +34,37 @@ server <- function(input, output) {
     output$oStat <- renderTable({
         statQ(input$SelectUniv)
     })
+    
+    # Contexte 
+    output$rl_info = renderText({
+      context()
+    })
  
     # Contexte 
-    output$classif_info = renderText({
+    output$rf_info = renderText({
       context()
     })
     
+    # precision 
+    output$pre2 = renderText({
+      pre()
+    })
+    
+    # Recall
+    output$rec2 = renderText({
+      rec()
+    })
+    
+    # fscore
+    output$fsco2 = renderText({
+      fsco()
+    })
+    
+    # accuracy
+    output$acc2 = renderText({
+      acc()
+    })
+
     # Parametres d'evaluation du modèle 
     output$param2 = renderTable({
       car2()
@@ -53,6 +79,19 @@ server <- function(input, output) {
     output$AUC2 = renderPlot({
       auc2(input$ka)
     })
+    
+    # ROC random Forest
+    output$ROC1 = renderPlot({
+      roc1()
+    })
+    
+    # Illustration de la valeur AUC
+    output$AUC1 = renderPlot({
+      auc1()
+    })
+    
+
+    
 
 
 }
