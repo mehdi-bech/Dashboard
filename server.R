@@ -33,6 +33,21 @@ server <- function(input, output) {
     output$oStat <- renderTable({
         statQ(input$SelectUniv)
     })
+    
+    # Contexte Random forest
+    output$rf_info = renderText({
+      context()
+    })
+    
+    # ROC random Forest
+    output$ROC2 = renderPlot({
+      roc2(input$ka)
+    })
+    
+    # Illustration de la valeur AUC
+    output$AUC2 = renderPlot({
+      auc2(input$ka)
+    })
 
 
 }

@@ -1,6 +1,16 @@
 
                               # Modèle 2 : Random Forest
 
+# Random Forest description.
+
+context = function(){
+  c =   " La colonne de la variable 'Inflammation of urinary bladder' est composée de deux modalités :
+      (yes , no). L'objectif ultime est de diagnostiquer l'inflammation de la vessie 
+      conditionnée par les symptômes du patient. Pour ce faire, nous allons appliquer
+      la méthode de la Forêt d'arbres de décision (Random Forest)"
+  return(c)
+}
+
 # Importation de la base de données prétraitée
 
 data = read.csv('Data\\Data_encoded.csv')
@@ -62,13 +72,22 @@ accuracy = (conf_mat_2[1,1]+conf_mat_2[2,2]) / (conf_mat_2[1,1]+conf_mat_2[2,1]+
 # Courbe ROC
 
 library(pROC)
-par (pty = "s")
-roc.info2 = roc(test_set[,7], y_pred, 
-                plot= TRUE, 
-                col= "#377eb8", 
-                lwd = 3,
-                main ="ROC curve -- Random Forest ",
-                percent = TRUE) 
+
+roc2 = function(k){ 
+  
+  classifier2 = randomForest( x = training_set[-7],
+                              y = training_set$Inflammation.of.urinary.bladder,
+                              ntree = k)
+  y_pred = predict(classifier2, newdata = test_set[-7])
+  
+  par (pty = "s")
+  return(roc(test_set[,7], y_pred, 
+             plot= TRUE, 
+             col= "#377eb8", 
+             lwd = 3,
+             main ="ROC curve -- Random Forest ",
+             percent = TRUE))
+}
 
 # La métrique AUC 
 
@@ -81,7 +100,15 @@ roc_df2 = data.frame(
 
     # Illustration de la valeur AUC
 
-AUC2 = roc(test_set[,7], y_pred, 
+auc2 = function(k){ 
+  
+  classifier2 = randomForest( x = training_set[-7],
+                              y = training_set$Inflammation.of.urinary.bladder,
+                              ntree = k)
+  y_pred = predict(classifier2, newdata = test_set[-7])
+  
+  par (pty = "s")
+  roc(test_set[,7], y_pred, 
            plot= TRUE, 
            col= "#377eb8", 
            lwd = 3,
@@ -92,4 +119,4 @@ AUC2 = roc(test_set[,7], y_pred,
            partial.auc = c(100, 0),
            auc.polygon = TRUE,
            auc.polygon.col = "#377eb822")
-
+}

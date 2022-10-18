@@ -1,4 +1,5 @@
 source("imports.R")
+source("random_forest.R")
 
 ui <- fluidPage(
 
@@ -56,11 +57,35 @@ ui <- fluidPage(
             ),
 ############################################## Page ##############################################  
     
-    tabPanel("Entraınement de modeles",
+    tabPanel("Modèles de classification supervisée",
       tabsetPanel(
-        tabPanel("Classification supervisee","Empty"),
-        tabPanel('Evaluation', "Empty")
+        tabPanel("Régression logistique",
+                 "Empty"),
+        tabPanel("Forêt d'arbres de décision (Random Forest)", 
+                 sidebarLayout(
+                   sidebarPanel(
+                     h3('Contexte :'),
+                     br(),
+                     htmlOutput(outputId = 'rf_info'),
+                     br(),
+                     sliderInput(
+                       'ka',
+                       strong("Selectionner le Nombre d'arbres de décision :"),
+                       value = 10,
+                       min = 1,
+                       max = 100)),
+                   mainPanel(
+                     fluidRow(
+                       column(6, plotOutput(outputId = "ROC2")),
+                       column(6, plotOutput(outputId = "AUC2"))
+                     )
+                   )
+                 )
+        ),
+        tabPanel('Machine à vecteurs de support (SVM)', 
+                 "Empty")
                   )
             )
-    )
+      )
 )
+
