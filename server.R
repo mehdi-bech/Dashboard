@@ -33,10 +33,15 @@ server <- function(input, output) {
     output$oStat <- renderTable({
         statQ(input$SelectUniv)
     })
-    
-    # Contexte Random forest
-    output$rf_info = renderText({
+ 
+    # Contexte 
+    output$classif_info = renderText({
       context()
+    })
+    
+    # Parametres d'evaluation du modèle 
+    output$param2 = renderTable({
+      car2()
     })
     
     # ROC random Forest

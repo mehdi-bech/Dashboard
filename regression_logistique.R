@@ -1,6 +1,16 @@
 
                               # Modèle 1 : Régression Logistique
 
+# Description Régression logistique
+
+context = function(){
+  c =   " La colonne de la variable 'Inflammation of urinary bladder' est composée de deux modalités :
+      (yes , no). L'objectif ultime est de diagnostiquer l'inflammation de la vessie 
+      conditionnée par les symptômes du patient. Pour ce faire, nous allons appliquer
+      la méthode de la Forêt d'arbres de décision (Random Forest)"
+  return(c)
+}
+
 # Importation de la base de données prétraitée
 
 data = read.csv('Data\\Data_encoded.csv')
@@ -64,14 +74,18 @@ accuracy = (conf_mat_1[1,1]+conf_mat_1[2,2]) / (conf_mat_1[1,1]+conf_mat_1[2,1]+
 # Courbe ROC
 
 library(pROC)
-par (pty = "s")
-roc.info1 = roc(test_set[,7], y_pred, 
+
+roc1 = function(){
+  
+  
+  par (pty = "s")
+  roc.info1 = roc(test_set[,7], y_pred, 
                plot= TRUE, 
                col= "#377eb8", 
                lwd = 3,
                main ="ROC curve -- Régression Logistique ",
                percent = TRUE) 
-
+}
 # La métrique AUC 
 
     # Calcul de l'intégration numérique du AUC

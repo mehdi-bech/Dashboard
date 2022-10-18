@@ -3,9 +3,12 @@ source("random_forest.R")
 
 ui <- fluidPage(
 
-  titlePanel("Dashboard"),
-
-  navbarPage("Menu",
+  titlePanel("Diagnostic des inflammations aiguës de la vessie urinaire"),
+  br(),
+  theme = bs_theme(bootswatch = "flatly", base_font = font_google("PT Serif", local = TRUE)),
+  
+  navbarPage(
+    "Menu",
     
 ############################################## Page ##############################################  
     tabPanel("Objectif",
@@ -60,13 +63,29 @@ ui <- fluidPage(
     tabPanel("Modèles de classification supervisée",
       tabsetPanel(
         tabPanel("Régression logistique",
-                 "Empty"),
+                 sidebarLayout(
+                   sidebarPanel(
+                     h3('Contexte :'),
+                     br(),
+                     htmlOutput(outputId = 'classif_info'),
+                     br()),
+                   mainPanel(
+                     fluidRow(
+                       column(6, plotOutput(outputId = "ROC1")),
+                       column(6, plotOutput(outputId = "AUC1"))
+                     ),
+                     fluidRow(
+                       column(6, plotOutput(outputId = "param1"))
+                       )
+                   )
+                 )
+        ),
         tabPanel("Forêt d'arbres de décision (Random Forest)", 
                  sidebarLayout(
                    sidebarPanel(
                      h3('Contexte :'),
                      br(),
-                     htmlOutput(outputId = 'rf_info'),
+                     htmlOutput(outputId = 'classif_info'),
                      br(),
                      sliderInput(
                        'ka',
@@ -78,6 +97,9 @@ ui <- fluidPage(
                      fluidRow(
                        column(6, plotOutput(outputId = "ROC2")),
                        column(6, plotOutput(outputId = "AUC2"))
+                     ),
+                     fluidRow(
+                       column(6, tableOutput(outputId = "param2"))
                      )
                    )
                  )
@@ -88,4 +110,3 @@ ui <- fluidPage(
             )
       )
 )
-
