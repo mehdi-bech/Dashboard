@@ -38,13 +38,13 @@ server <- function(input, output) {
     
     # Contexte 
     output$rl_info = renderText({
-      context()
+      context1()
     })
     output$rf_info = renderText({
-      context()
+      context2()
     })
     output$svm_info = renderText({
-      context()
+      context3()
     })
     
     # precision 

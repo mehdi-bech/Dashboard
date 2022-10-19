@@ -22,7 +22,7 @@ ui <- fluidPage(
         ),
         mainPanel(
           h5(
-          includeHTML("Table.html"),
+          includeHTML("table.html"),
           h2("\n"),
           actionButton("go", "Show")
             ),

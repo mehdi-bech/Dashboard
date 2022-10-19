@@ -1,6 +1,16 @@
 
                               # Modèle 2 : Random Forest
 
+# Description Random Forest
+
+context2 = function(){
+  c =   " La colonne de la variable 'Inflammation of urinary bladder' est composée de deux modalités :
+      (yes , no). L'objectif ultime est de diagnostiquer l'inflammation de la vessie 
+      conditionnée par les symptômes du patient. Pour ce faire, nous allons appliquer
+      la méthode de la Forêt d'arbres de décision (Random Forest)"
+  return(c)
+}
+
 # Importation de la base de données prétraitée
 
 data = read.csv('Data\\Data_encoded.csv')
