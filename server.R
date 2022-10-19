@@ -135,5 +135,31 @@ server <- function(input, output) {
       table_metr3()
     })
     
+    # Affichage des interprétations
+    observeEvent(input$go1, {
+      showModal(modalDialog(
+        size='l',
+        renderText("interp1.html"),
+        footer = NULL,
+        easyClose = TRUE
+      ))
+    })
+    observeEvent(input$go2, {
+      showModal(modalDialog(
+        size='l',
+        renderText("interp2.html"),
+        footer = NULL,
+        easyClose = TRUE
+      ))
+    })
+    observeEvent(input$go3, {
+      showModal(modalDialog(
+        size='l',
+        renderText("interp3.html"),
+        footer = NULL,
+        easyClose = TRUE
+      ))
+    })
+    
 
 }

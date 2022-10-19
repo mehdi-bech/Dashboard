@@ -7,7 +7,7 @@ context1 = function(){
   c =   " La colonne de la variable 'Inflammation of urinary bladder' est composée de deux modalités :
       (yes , no). L'objectif ultime est de diagnostiquer l'inflammation de la vessie 
       conditionnée par les symptômes du patient. Pour ce faire, nous allons appliquer
-      la méthode de la régression logistique"
+      la méthode de la régression logistique :"
   return(c)
 }
 

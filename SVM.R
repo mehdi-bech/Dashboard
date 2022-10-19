@@ -7,7 +7,7 @@ context3 = function(){
   c =   " La colonne de la variable 'Inflammation of urinary bladder' est composée de deux modalités :
       (yes , no). L'objectif ultime est de diagnostiquer l'inflammation de la vessie 
       conditionnée par les symptômes du patient. Pour ce faire, nous allons appliquer
-      la méthode Machine à vecteurs de support (SVM)"
+      la méthode Machine à vecteurs de support (SVM) :"
   return(c)
 }
 

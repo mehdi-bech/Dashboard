@@ -1,6 +1,7 @@
 source("imports.R")
 source("random_forest.R")
 source("regression_logistique.R")
+source("SVM.R")
 
 ui <- fluidPage(
 
@@ -78,6 +79,8 @@ ui <- fluidPage(
                      fluidRow(
                        column(6,tableOutput(outputId = "mc1")),
                        column(6,tableOutput(outputId = "tablemet1")),
+                       h2("\n"),
+                       actionButton("go1", "Interprétation"),
                      )
                    )
                  )
@@ -98,11 +101,13 @@ ui <- fluidPage(
                    mainPanel(
                      fluidRow(
                        column(6, plotOutput(outputId = "ROC2")),
-                       column(6, plotOutput(outputId = "AUC2"))
+                       column(6, plotOutput(outputId = "AUC2")),
                      ),
                      fluidRow(
                          column(6,tableOutput(outputId = "mc2")),
                          column(6,tableOutput(outputId = "tablemet2")),
+                         h2("\n"),
+                         actionButton("go2", "Interprétation"),
                      )
                    )
                  )
@@ -122,6 +127,8 @@ ui <- fluidPage(
                      fluidRow(
                        column(6,tableOutput(outputId = "mc3")),
                        column(6,tableOutput(outputId = "tablemet3")),
+                       h2("\n"),
+                       actionButton("go3", "Interprétation"),
                      )
                    )
                  )
