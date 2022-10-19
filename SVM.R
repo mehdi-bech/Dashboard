@@ -21,20 +21,18 @@ classifier3 = svm( formula = Inflammation.of.urinary.bladder ~ .,
                    type = 'C-classification',
                    kernel = 'polynomial')
 
-summary(classifier3)
-
 # Prédiction des résultats de l'ensemble de test
 
-y_pred = predict(classifier3, newdata = test_set[-7])
+y_pred3 = predict(classifier3, newdata = test_set[-7])
 
 # Construction de la matrice de confusion 
 
 true_y = as.numeric(test_set$Inflammation.of.urinary.bladder == 1)
 
-true_pos = (true_y==1) & (y_pred==1)
-true_neg = (true_y==0) & (y_pred==0)
-false_pos = (true_y==0) & (y_pred==1)
-false_neg = (true_y==1) & (y_pred==0)
+true_pos = (true_y==1) & (y_pred3 ==1)
+true_neg = (true_y==0) & (y_pred3 ==0)
+false_pos = (true_y==0) & (y_pred3 ==1)
+false_neg = (true_y==1) & (y_pred3 ==0)
 
 conf_mat_3 = matrix(c(sum(true_pos), sum(false_pos),
                        sum(false_neg), sum(true_neg)), 2, 2)
@@ -42,46 +40,74 @@ conf_mat_3 = matrix(c(sum(true_pos), sum(false_pos),
 colnames(conf_mat_3) = c('Yhat = 1', 'Yhat = 0')
 rownames(conf_mat_3) = c('Y = 1', 'Y = 0')
 
-# Précision (TP / (TP + FP))
+# Fonction matrice de confusion
 
-precision = conf_mat_3[1, 1] / sum(conf_mat_3[,1])
+cm3 = function (){
+  return(cbind(' '= c("Y=1", "Y=0"),conf_mat_3))
+}
 
-# Recall "sensibilité" (TP / (TP + FN))
+# Fonction des caracteristiques
 
-recal = conf_mat_3[1, 1] / sum(conf_mat_3[1,])
+pre3 = function(){
+  # Precision (TP / (TP + FP))
+  precision3 = conf_mat_3[1, 1] / sum(conf_mat_3[,1])
+  return (precision3) 
+}
 
-# F-score "specificité" (TN / (TN + FP))
+rec3 = function(){    
+  # Recall (TP / (TP + FN))
+  recal3 = conf_mat_3[1, 1] / sum(conf_mat_3[1,])
+  return (recal3)
+}
 
-f1_score = 2* ((precision*recal) / (precision+recal))
+fsco3 = function(){
+  # F-score (2*((precision*recal) / (precision+recal))
+  precision3 = conf_mat_3[1, 1] / sum(conf_mat_3[,1])
+  recal3 = conf_mat_3[1, 1] / sum(conf_mat_3[1,])
+  f1_score3 = 2* ( (precision3 * recal3) / (precision3 + recal3) )
+  return (f1_score3)
+}
 
-# Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
+acc3 = function(){
+  # Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
+  accuracy3 = (conf_mat_3[1,1]+conf_mat_3[2,2]) / (conf_mat_3[1,1]+conf_mat_3[2,1]+
+                                                     conf_mat_3[2,2]+conf_mat_3[1,2])
+  return(accuracy3)
+}
 
-accuracy = (conf_mat_3[1,1]+conf_mat_3[2,2]) / (conf_mat_3[1,1]+conf_mat_3[2,1]+
-                                                conf_mat_3[2,2]+conf_mat_3[1,2])
+table_metr3 = function(){
+  t = matrix(c('précision','sensibilité','F1-score','accuracy', pre3(),rec3(),fsco3(),acc3()),4,2)
+  colnames(t)= c('Métrique','Valeur')
+  return(t)
+}
 
-# Courbe ROC
+# Fonction ROC
 
 library(pROC)
-par (pty = "s")
-roc.info3 = roc(test_set[,7], y_pred, 
-                plot= TRUE, 
-                col= "#377eb8", 
-                lwd = 3,
-                main ="ROC curve -- SVM ",
-                percent = TRUE) 
 
-# La métrique AUC 
+roc3 = function(){ 
+  
+  # Courbe ROC
+  
+  library(pROC)
+  par (pty = "s")
+  r3 = roc(test_set[,7], y_pred3, 
+           plot= TRUE, 
+           col= "#377eb8", 
+           lwd = 3,
+           main ="ROC curve -- SVM ",
+           percent = TRUE)
+  return(r3)
+} 
 
-    # Calcul de l'intégration numérique du AUC
+# Fonction Illustration de la valeur AUC
 
-roc_df3 = data.frame(
-      TP = roc.info3$sensitivities*100,
-      FP = (1-roc.info3$sensitivities)*100,
-      thresholds = roc.info3$thresholds)
-
-    # Illustration de la valeur AUC
-
-AUC3 = roc(test_set[,7], y_pred, 
+auc3 = function(){ 
+  
+  # Illustration de la valeur AUC
+  
+  par (pty = "s")
+  a3 = roc(test_set[,7], y_pred3, 
            plot= TRUE, 
            col= "#377eb8", 
            lwd = 3,
@@ -92,3 +118,5 @@ AUC3 = roc(test_set[,7], y_pred,
            partial.auc = c(100, 0),
            auc.polygon = TRUE,
            auc.polygon.col = "#377eb822")
+  return(a3)
+}

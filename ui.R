@@ -6,7 +6,7 @@ ui <- fluidPage(
 
   titlePanel("Diagnostic des inflammations aiguës de la vessie urinaire"),
   br(),
-  theme = bs_theme(bootswatch = "flatly", base_font = font_google("PT Serif", local = TRUE)),
+  theme = bs_theme(bootswatch = "cerulean", base_font = font_google("PT Serif", local = TRUE)),
   
   navbarPage(
     "Menu",
@@ -76,8 +76,9 @@ ui <- fluidPage(
                        column(6, plotOutput(outputId = "AUC1"))
                      ),
                      fluidRow(
-                       #column(6, tableOutput(outputId = "cm1"))
-                       )
+                       column(6,tableOutput(outputId = "mc1")),
+                       column(6,tableOutput(outputId = "tablemet1")),
+                     )
                    )
                  )
         ),
@@ -100,18 +101,32 @@ ui <- fluidPage(
                        column(6, plotOutput(outputId = "AUC2"))
                      ),
                      fluidRow(
-                         column(6,tableOutput(outputId = "param2")),
-                         p("La précision est : ", textOutput(outputId = "pre2") ),
-                         p("La sensibilité est : ", textOutput(outputId = "rec2")),
-                         p("Le F1-score est : ", textOutput(outputId = "fsco2") ),
-                         p("L'accuracy totale est : ", textOutput(outputId = "acc2") ),
+                         column(6,tableOutput(outputId = "mc2")),
+                         column(6,tableOutput(outputId = "tablemet2")),
                      )
                    )
                  )
         ),
         tabPanel('Machine à vecteurs de support (SVM)', 
-                 "Empty")
-                  )
-            )
+                 sidebarLayout(
+                   sidebarPanel(
+                     h4('Contexte :'),
+                     br(),
+                     htmlOutput(outputId = 'svm_info'),
+                     br()),
+                   mainPanel(
+                     fluidRow(
+                       column(6, plotOutput(outputId = "ROC3")),
+                       column(6, plotOutput(outputId = "AUC3"))
+                     ),
+                     fluidRow(
+                       column(6,tableOutput(outputId = "mc3")),
+                       column(6,tableOutput(outputId = "tablemet3")),
+                     )
+                   )
+                 )
+        )
       )
+    )
+)
 )

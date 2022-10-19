@@ -1,6 +1,7 @@
 source("imports.R")
 source("univariate.R")
 source("regression_logistique.R")
+source("SVM.R")
 
 server <- function(input, output) {
   
@@ -39,59 +40,100 @@ server <- function(input, output) {
     output$rl_info = renderText({
       context()
     })
- 
-    # Contexte 
     output$rf_info = renderText({
+      context()
+    })
+    output$svm_info = renderText({
       context()
     })
     
     # precision 
+    output$pre1 = renderText({
+      pre1()
+    })
     output$pre2 = renderText({
-      pre()
+      pre2()
+    })
+    output$pre3 = renderText({
+      pre3()
     })
     
     # Recall
+    output$rec1 = renderText({
+      rec1()
+    })
     output$rec2 = renderText({
-      rec()
+      rec2()
+    })
+    output$rec3 = renderText({
+      rec3()
     })
     
     # fscore
+    output$fsco1 = renderText({
+      fsco1()
+    })
     output$fsco2 = renderText({
-      fsco()
+      fsco2()
+    })
+    output$fsco3 = renderText({
+      fsco3()
     })
     
     # accuracy
+    output$acc1 = renderText({
+      acc1()
+    })
     output$acc2 = renderText({
-      acc()
+      acc2()
+    })
+    output$acc3 = renderText({
+      acc3()
     })
 
-    # Parametres d'evaluation du modèle 
-    output$param2 = renderTable({
-      car2()
+    # Matrice de confusion 
+    output$mc1 = renderTable({
+      cm1()
+    })
+    output$mc2 = renderTable({
+      cm2()
+    })
+    output$mc3 = renderTable({
+      cm3()
     })
     
-    # ROC random Forest
+    # ROC 
+    output$ROC1 = renderPlot({
+      roc1()
+    })
     output$ROC2 = renderPlot({
       roc2(input$ka)
     })
-    
-    # Illustration de la valeur AUC
-    output$AUC2 = renderPlot({
-      auc2(input$ka)
-    })
-    
-    # ROC random Forest
-    output$ROC1 = renderPlot({
-      roc1()
+    output$ROC3 = renderPlot({
+      roc3()
     })
     
     # Illustration de la valeur AUC
     output$AUC1 = renderPlot({
       auc1()
     })
+    output$AUC2 = renderPlot({
+      auc2(input$ka)
+    })
+    output$AUC3 = renderPlot({
+      auc3()
+    })
     
-
+    # Table des metriques
+    output$tablemet1 = renderTable({
+      table_metr1()
+    })
+    output$tablemet2 = renderTable({
+      table_metr2()
+    })
+    output$tablemet3 = renderTable({
+      table_metr3()
+    })
     
-
 
 }
