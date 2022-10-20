@@ -23,9 +23,9 @@ ui <- fluidPage(
       sidebarLayout(
 
         sidebarPanel( 
-          h4(
-          includeHTML( "Objectif text.html"),          
-          ),
+          
+          includeHTML( "Objectif text.html")         
+          ,
         ),
         mainPanel(
           h4(
@@ -65,12 +65,12 @@ ui <- fluidPage(
         ),
         tabPanel('Analyse bidimensionnelle', 
           selectInput("SelectBiv1",
-                          label = h4("Sélectionner une variable pour l'analyse bivariée"),
+                          label = h4("Sélectionner la première variable pour l'analyse bivariée"),
                           choices = a,
                           selected=1
                                 ),
           selectInput("SelectBiv2",
-                          label = h4("Sélectionner une variable pour l'analyse bivariée"),
+                          label = h4("Sélectionner la seconde variable pour l'analyse bivariée"),
                           choices =  a,
                           selected=2
                                 )
