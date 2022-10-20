@@ -1,4 +1,5 @@
 source("imports.R")
+source("Bivariate.R")
 source("random_forest.R")
 source("regression_logistique.R")
 source("SVM.R")
@@ -64,17 +65,28 @@ ui <- fluidPage(
           )
         ),
         tabPanel('Analyse bidimensionnelle', 
-          selectInput("SelectBiv1",
+          sidebarLayout(
+            sidebarPanel(
+              selectInput("SelectBiv1",
                           label = h4("Sélectionner la première variable pour l'analyse bivariée"),
                           choices = a,
                           selected=1
                                 ),
-          selectInput("SelectBiv2",
+              selectInput("SelectBiv2",
                           label = h4("Sélectionner la seconde variable pour l'analyse bivariée"),
                           choices =  a,
                           selected=2
                                 )
-          )
+          ),
+            mainPanel(
+              fluidRow(
+                  column(6, plotOutput(outputId = "plt_box_bar")),
+                  column(6, tableOutput(outputId = "tab_test"))
+                      ),
+              fluidRow(tableOutput(outputId = "describetable"))
+                      
+            )
+            ))
                   )
             ),
 ############################################## Page ##############################################  

@@ -55,6 +55,3 @@ tab_test <- function(first_feature, second_feature)
         return(NULL)
     }
     }
-
-
-matrix(c('X-squared',chisq.test(f)$statistic,'Phi', phi(f, digits = 3), 'Cramer',cramerV(f)), nrow = 2)

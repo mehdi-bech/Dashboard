@@ -1,5 +1,6 @@
 source("imports.R")
 source("univariate.R")
+source("Bivariate.R")
 source("regression_logistique.R")
 source("SVM.R")
 
@@ -34,6 +35,18 @@ server <- function(input, output, session) {
     
     output$oStat <- renderTable({
         statQ(input$SelectUniv)
+    })
+
+    output$describetable <- renderTable({
+        describetable(input$SelectBiv1,input$SelectBiv2)
+    })
+
+    output$tab_test <- renderTable({
+        tab_test(input$SelectBiv1,input$SelectBiv2)
+    })
+
+    output$plt_box_bar <- renderPlot({
+        plt_box_bar(input$SelectBiv1,input$SelectBiv2)
     })
     
     # Contexte 
