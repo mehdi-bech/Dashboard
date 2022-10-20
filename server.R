@@ -2,9 +2,8 @@ source("imports.R")
 source("univariate.R")
 source("regression_logistique.R")
 source("SVM.R")
-source("www")
 
-server <- function(input, output) {
+server <- function(input, output, session) {
   
   # Affichage de la base de donnees
   observeEvent(input$go, {
@@ -161,6 +160,12 @@ server <- function(input, output) {
         easyClose = TRUE
       ))
     })
+  observe({
+      
+      b=input$SelectBiv1
+      updateSelectInput(session, "SelectBiv2",
+                               choices = a[a != b])
+                            
     
-
+})
 }

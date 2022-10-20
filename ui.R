@@ -2,7 +2,11 @@ source("imports.R")
 source("random_forest.R")
 source("regression_logistique.R")
 source("SVM.R")
-
+choi=function()
+{
+  a=sort(names(df)) != input$SelectBiv1
+  return(a)
+}
 ui <- fluidPage(
 
   titlePanel(title = span(img(src = "urinary-removebg-preview.png", height = 90), 
@@ -59,7 +63,18 @@ ui <- fluidPage(
             )
           )
         ),
-        tabPanel('Analyse bidimensionnelle', "Empty")
+        tabPanel('Analyse bidimensionnelle', 
+          selectInput("SelectBiv1",
+                          label = h4("Sélectionner une variable pour l'analyse bivariée"),
+                          choices = a,
+                          selected=1
+                                ),
+          selectInput("SelectBiv2",
+                          label = h4("Sélectionner une variable pour l'analyse bivariée"),
+                          choices =  a,
+                          selected=2
+                                )
+          )
                   )
             ),
 ############################################## Page ##############################################  
@@ -140,3 +155,4 @@ ui <- fluidPage(
     ),
 inverse = T)
 )
+

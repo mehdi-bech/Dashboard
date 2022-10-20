@@ -39,3 +39,4 @@ categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuo
                  'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
                  'Inflammation of urinary bladder ' )
 
+a=as.list(names(df))

@@ -105,7 +105,7 @@ roc1 = function(){
   par (pty = "s")
   r1 = roc(test_set[,7], y_pred1, 
             plot= TRUE, 
-            col= "#377eb8", 
+            col= "#C60800", 
             lwd = 3,
             main ="ROC curve -- Régression Logistique ",
             percent = TRUE)
@@ -121,7 +121,7 @@ auc1 = function(){
     par (pty = "s")
     a1 = roc(test_set[,7], y_pred1, 
         plot= TRUE, 
-        col= "#377eb8", 
+        col= "#C60800", 
         lwd = 3,
         print.auc = TRUE,
         print.auc.x= 45,
@@ -129,6 +129,6 @@ auc1 = function(){
         percent = TRUE,
         partial.auc = c(100, 0),
         auc.polygon = TRUE,
-        auc.polygon.col = "#377eb822")
+        auc.polygon.col = "#C6080022")
     return(a1)
 }
