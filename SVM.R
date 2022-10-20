@@ -99,11 +99,13 @@ roc3 = function(){
   
   # Courbe ROC
   
+  y_pred3 = predict(classifier3, newdata = test_set[-7])
+  
   library(pROC)
   par (pty = "s")
   r3 = roc(test_set[,7], y_pred3, 
            plot= TRUE, 
-           col= "#377eb8", 
+           col= "#C60800", 
            lwd = 3,
            main ="ROC curve -- SVM ",
            percent = TRUE)
@@ -119,7 +121,7 @@ auc3 = function(){
   par (pty = "s")
   a3 = roc(test_set[,7], y_pred3, 
            plot= TRUE, 
-           col= "#377eb8", 
+           col= "#C60800", 
            lwd = 3,
            print.auc = TRUE,
            print.auc.x= 45,
@@ -127,6 +129,6 @@ auc3 = function(){
            percent = TRUE,
            partial.auc = c(100, 0),
            auc.polygon = TRUE,
-           auc.polygon.col = "#377eb822")
+           auc.polygon.col = "#C6080022")
   return(a3)
 }

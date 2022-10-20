@@ -2,7 +2,6 @@ source("imports.R")
 source("univariate.R")
 source("regression_logistique.R")
 source("SVM.R")
-source("www")
 
 server <- function(input, output) {
   

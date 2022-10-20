@@ -113,7 +113,7 @@ roc2 = function(k){
       par (pty = "s")
       return(roc(test_set[,7], yk, 
                  plot= TRUE, 
-                 col= "#377eb8", 
+                 col= "#C60800", 
                  lwd = 3,
                  main ="ROC curve -- Random Forest ",
                  percent = TRUE))
@@ -139,7 +139,7 @@ auc2 = function(k){
       par (pty = "s")
       return(roc(test_set[,7], yk, 
                plot= TRUE, 
-               col= "#377eb8", 
+               col= "#C60800", 
                lwd = 3,
                print.auc = TRUE,
                print.auc.x= 45,
@@ -147,5 +147,5 @@ auc2 = function(k){
                percent = TRUE,
                partial.auc = c(100, 0),
                auc.polygon = TRUE,
-               auc.polygon.col = "#377eb822"))
+               auc.polygon.col = "#C6080022"))
 }
