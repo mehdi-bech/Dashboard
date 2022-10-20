@@ -5,30 +5,32 @@ source("SVM.R")
 
 ui <- fluidPage(
 
-  titlePanel("Diagnostic des inflammations aiguës de la vessie urinaire"),
+  titlePanel(title = span(img(src = "urinary-removebg-preview.png", height = 90), 
+                          "Diagnostic des inflammations aiguës de la vessie urinaire")),
   br(),
-  theme = bs_theme(bootswatch = "cerulean", base_font = font_google("PT Serif", local = TRUE)),
+  theme = bs_theme(bootswatch = "united",
+                   base_font = font_google("Montserrat", local = TRUE)),
   
   navbarPage(
-    "Menu",
+    "MENU",
     
 ############################################## Page ##############################################  
     tabPanel("Objectif",
       sidebarLayout(
 
         sidebarPanel( 
-          h5(
-          includeHTML("Objectif text.html"),          
+          h4(
+          includeHTML( "Objectif text.html"),          
           ),
         ),
         mainPanel(
-          h5(
+          h4(
           includeHTML("table.html"),
-          h2("\n"),
+          h3("\n"),
           actionButton("go", "Show")
-            ),
+            )
                   )             
-                    ),
+                    )
 
             ),
 
@@ -80,7 +82,7 @@ ui <- fluidPage(
                        column(6,tableOutput(outputId = "mc1")),
                        column(6,tableOutput(outputId = "tablemet1")),
                        h2("\n"),
-                       actionButton("go1", "Interprétation"),
+                       actionButton("go1", "Interprétations"),
                      )
                    )
                  )
@@ -107,7 +109,7 @@ ui <- fluidPage(
                          column(6,tableOutput(outputId = "mc2")),
                          column(6,tableOutput(outputId = "tablemet2")),
                          h2("\n"),
-                         actionButton("go2", "Interprétation"),
+                         actionButton("go2", "Interprétations"),
                      )
                    )
                  )
@@ -128,12 +130,13 @@ ui <- fluidPage(
                        column(6,tableOutput(outputId = "mc3")),
                        column(6,tableOutput(outputId = "tablemet3")),
                        h2("\n"),
-                       actionButton("go3", "Interprétation"),
+                       actionButton("go3", "Interprétations"),
                      )
                    )
                  )
         )
+        
       )
-    )
-)
+    ),
+inverse = T)
 )
