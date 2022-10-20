@@ -1,9 +1,9 @@
 # Chargement des librairies
-
 library(shiny)
 library(markdown)
 library(shinythemes)
 library(reshape2)
+library(rcompanion)
 library(ROCR)
 library(class)
 library(data.table)

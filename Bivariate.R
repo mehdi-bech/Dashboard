@@ -42,3 +42,19 @@ plt_box_bar <- function(first_feature, second_feature)
             horizontal=FALSE) )
     }
     }
+tab_test <- function(first_feature, second_feature)
+{
+    if (! is.numeric(df[, first_feature]) & ! is.numeric(df[, second_feature]))
+    {
+        f=ftable(df[,first_feature], df[,second_feature],dnn=c(first_feature,second_feature))
+        temp <- matrix(c('X-squared',chisq.test(f)$statistic,'Phi', phi(f, digits = 3), 'Cramer',cramerV(f)), nrow = 2)
+        return(temp)
+    }
+    else 
+    {
+        return(NULL)
+    }
+    }
+
+
+matrix(c('X-squared',chisq.test(f)$statistic,'Phi', phi(f, digits = 3), 'Cramer',cramerV(f)), nrow = 2)
