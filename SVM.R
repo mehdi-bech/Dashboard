@@ -100,7 +100,11 @@ roc3 = function(){
   # Courbe ROC
   
   y_pred3 = predict(classifier3, newdata = test_set[-7])
+<<<<<<< HEAD
   y3 = ifelse(as.numeric( y_pred3) > 1.5, 1, 0)
+=======
+  y3 = ifelse(as.numeric(y_pred3) > 1.5, 1, 0)
+>>>>>>> bbfd5650235d5c3901b989f41e6890e438a92f63
   
   library(pROC)
   par (pty = "s")
@@ -120,7 +124,7 @@ auc3 = function(){
   # Illustration de la valeur AUC
   
   par (pty = "s")
-  a3 = roc(test_set[,7], y_pred3, 
+  a3 = roc(test_set[,7], y3, 
            plot= TRUE, 
            col= "#C60800", 
            lwd = 3,
