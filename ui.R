@@ -27,7 +27,7 @@ ui <- fluidPage(
           h4(
           includeHTML("table.html"),
           h3("\n"),
-          actionButton("go", "Show")
+          actionButton("go", "Afficher la Base de Données")
             )
                   )             
                     )
@@ -82,7 +82,7 @@ ui <- fluidPage(
                        column(6,tableOutput(outputId = "mc1")),
                        column(6,tableOutput(outputId = "tablemet1")),
                        h2("\n"),
-                       actionButton("go1", "Interprétations"),
+                       actionButton("go1", "Afficher les interprétations"),
                      )
                    )
                  )
@@ -109,7 +109,7 @@ ui <- fluidPage(
                          column(6,tableOutput(outputId = "mc2")),
                          column(6,tableOutput(outputId = "tablemet2")),
                          h2("\n"),
-                         actionButton("go2", "Interprétations"),
+                         actionButton("go2", "Afficher les interprétations"),
                      )
                    )
                  )
@@ -130,7 +130,7 @@ ui <- fluidPage(
                        column(6,tableOutput(outputId = "mc3")),
                        column(6,tableOutput(outputId = "tablemet3")),
                        h2("\n"),
-                       actionButton("go3", "Interprétations"),
+                       actionButton("go3", "Afficher les interprétations"),
                      )
                    )
                  )
