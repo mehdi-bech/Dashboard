@@ -5,6 +5,7 @@ library(shinythemes)
 library(reshape2)
 library(rcompanion)
 library(ROCR)
+library(psych)
 library(class)
 library(data.table)
 library(dplyr)
@@ -39,3 +40,4 @@ categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuo
                  'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
                  'Inflammation of urinary bladder ' )
 
+a=as.list(names(df))
