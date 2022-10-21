@@ -9,6 +9,12 @@ statQ <- function(var)
           temp2=data.frame(
           stat = c('Min', 'Quantile 25%', 'Médiane', 'Quantile 75%', 'Max', 'Moyenne', 'Écart type'),
           values = c(quantile(df[, var]), mean(df[, var]), sd(df[, var])))
+          temp2 = setDT(temp2)
+          temp2= transpose(temp2)
+          temp2=data.frame(temp2)
+          colnames(temp2) <- temp2[1,]
+          temp2 <- temp2[-1, ]         
+
 
         return(setDT(temp2))
 
