@@ -10,7 +10,7 @@ choi=function()
 }
 ui <- fluidPage(
 
-  titlePanel(title = span(img(src = "urinary-removebg-preview.png", height = 90), 
+  titlePanel(title = span(img(src = "urinary-removebg-preview.png", height = 100), 
                           "Diagnostic des inflammations aiguës de la vessie urinaire")),
   br(),
   theme = bs_theme(bootswatch = "united",
@@ -20,7 +20,7 @@ ui <- fluidPage(
     "MENU",
     
 ############################################## Page ##############################################  
-    tabPanel("Data et objectif",
+    tabPanel("Données et objectif",
       sidebarLayout(
 
         sidebarPanel( 
@@ -54,12 +54,15 @@ ui <- fluidPage(
               ),
             mainPanel(
               fluidRow(
-                  column(6, plotOutput(outputId = "oplot_box_bar")),
-                  column(6, plotOutput(outputId = "oplot_histo_pie"))
+                  column(4, plotOutput(outputId = "oplot_box_bar")),
+                  column(4, plotOutput(outputId = "oplot_histo_pie")),
+                  column(4, plotlyOutput(outputId = "oplot_Cummul")),
+                  
+                  hr(),
+                  br()
                       ),
               fluidRow(
-                  column(6, plotlyOutput(outputId = "oplot_Cummul")),
-                  column(6, tableOutput(outputId = "oStat"))
+                  column(6,offset = 3, tableOutput(outputId = "oStat"))
                       )
             )
           )
@@ -81,10 +84,12 @@ ui <- fluidPage(
             mainPanel(
               fluidRow(
                   column(6, plotOutput(outputId = "plt_box_bar")),
-                  column(6, tableOutput(outputId = "tab_test"))
+                  column(6, tableOutput(outputId = "describetable")),
+                  hr(),
                       ),
-              fluidRow(tableOutput(outputId = "describetable"))
-                      
+              fluidRow(
+                  column(6,tableOutput(outputId = "tab_test"))
+              )
             )
             ))
                   )

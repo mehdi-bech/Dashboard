@@ -36,7 +36,7 @@ plt_box_bar <- function(first_feature, second_feature)
         cat_col =! unlist(lapply(temp, is.numeric))
                      
         return(boxplot(temp[,num_col] ~ temp[,cat_col],
-            col="violet", main="Boîtes parallèles",
+            col="#C60800", main="Boîtes parallèles",
             xlab = names(temp)[which(cat_col)],
             ylab = names(temp)[which(num_col)],
             horizontal=FALSE) )

@@ -41,7 +41,7 @@ plot_box_bar <- function(var)
         df1=df %>% select(var)
         colnames(df1)[1] = "col"
             fig <- ggplot(df1, aes(x="", y=col)) + 
-                geom_boxplot()+
+                geom_boxplot(color="#C60800")+
                 xlab(var) + ylab("Valeur")+
                 ggtitle(paste('Boîte à moustaches de ', var))+
                 ggeasy::easy_center_title()
@@ -55,11 +55,11 @@ plot_box_bar <- function(var)
         temp1 <- as.data.frame(table(df[, var]))
         colnames(temp1)[1] = "Var1"
            fig <- ggplot(temp1, aes(x=Var1, y=Freq, fill=Var1))+
-                geom_bar(stat="identity") +
-                theme(legend.title=element_blank())+
-                scale_fill_brewer(palette="Blues")+
+                geom_bar(stat="identity", color="#C60800", fill= "#C6080022") +
+                theme_classic()+
+                theme(axis.text = element_text(size = 11))+
                 xlab(var) + ylab("Fréquence")+
-                ggtitle(paste('Diagramme en clonnes de ', var))+
+                ggtitle(paste('Diagramme en colonnes de ', var))+
                 ggeasy::easy_center_title()
     
         return(fig)
@@ -75,8 +75,8 @@ plot_histo_pie <- function(var)
         df1=df %>% select(var)
         colnames(df1)[1] = "col"
         fig <-  ggplot(df1, aes(x=col)) + 
-                geom_histogram(aes(y=..density..), colour = 1, fill = "white")+
-                geom_density(lwd = 1, colour = 4, fill = 4, alpha = 0.25)+
+                geom_histogram(aes(y=..density..), colour = "#C60800", fill = "white")+
+                geom_density(lwd = 1, colour = "#C60800", fill = "#C6080022", alpha = 0.25)+
                 ggtitle(paste('Histogramme de ', var))+
                 ggeasy::easy_center_title()
         return(fig)
@@ -86,8 +86,15 @@ plot_histo_pie <- function(var)
         temp1 <- as.data.frame(table(df[, var]))
         colnames(temp1)[1] = "Var1"
         fig <-  ggplot(temp1, aes(x="", y=Freq, fill=Var1)) +
-                geom_bar(stat="identity", width=1) +
-                theme(legend.title=element_blank())+
+                geom_bar(stat="identity", width=1, fillCol="white") +
+                geom_col(color = "black")+
+                geom_label(aes(label = Freq),
+                           color = "white",
+                           position = position_stack(vjust = 0.5),
+                           show.legend = FALSE) +
+                scale_fill_manual(values = c("#953553",
+                                             "#FF8A8A"))+
+                theme_void()+
                 coord_polar("y", start=0)+
                 guides(fill=guide_legend(title=var))+
                 xlab(var) + ylab("")
@@ -102,7 +109,11 @@ plot_Cummul <- function(var)
     if (is.numeric(df[, var]))
     {
         tmp.hist <- hist( df[, var], plot = FALSE, right = FALSE)
-        fig <- plot_ly(x = tmp.hist$breaks[-1], y = cumsum(tmp.hist$counts), mode = 'lines+markers')
+        fig <- plot_ly(x = tmp.hist$breaks[-1], 
+                       y = cumsum(tmp.hist$counts), 
+                       mode = 'lines+markers',
+                       line= list(color="#C60800"),
+                       marker = list(color= "black"))
         fig <- fig %>% layout(title = paste('Courbe cumulative de \n ', var, sep = ' '))
         return(fig)
     }
