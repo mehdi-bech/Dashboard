@@ -15,7 +15,7 @@ ui <- fluidPage(
     "MENU",
     
 ############################################## Page ##############################################  
-    tabPanel("Objectif",
+    tabPanel("Data et objectif",
       sidebarLayout(
 
         sidebarPanel( 
@@ -27,7 +27,7 @@ ui <- fluidPage(
           h4(
           includeHTML("table.html"),
           h3("\n"),
-          actionButton("go", "Afficher la Base de Données")
+          actionButton("go", "Afficher la Dataset")
             )
                   )             
                     )
@@ -76,11 +76,12 @@ ui <- fluidPage(
                    mainPanel(
                      fluidRow(
                        column(6, plotOutput(outputId = "ROC1")),
-                       column(6, plotOutput(outputId = "AUC1"))
+                       column(6, plotOutput(outputId = "AUC1")),
+                       hr(),
                      ),
-                     fluidRow(
-                       column(6,tableOutput(outputId = "mc1")),
-                       column(6,tableOutput(outputId = "tablemet1")),
+                     fixedRow(
+                       column(6, offset= 2, tableOutput(outputId = "mc1")),
+                       column(3, tableOutput(outputId = "tablemet1")),
                        h2("\n"),
                        actionButton("go1", "Afficher les interprétations"),
                      )
@@ -104,10 +105,11 @@ ui <- fluidPage(
                      fluidRow(
                        column(6, plotOutput(outputId = "ROC2")),
                        column(6, plotOutput(outputId = "AUC2")),
+                       hr(),
                      ),
                      fluidRow(
-                         column(6,tableOutput(outputId = "mc2")),
-                         column(6,tableOutput(outputId = "tablemet2")),
+                         column(6, offset= 2,tableOutput(outputId = "mc2")),
+                         column(3,tableOutput(outputId = "tablemet2")),
                          h2("\n"),
                          actionButton("go2", "Afficher les interprétations"),
                      )
@@ -124,11 +126,12 @@ ui <- fluidPage(
                    mainPanel(
                      fluidRow(
                        column(6, plotOutput(outputId = "ROC3")),
-                       column(6, plotOutput(outputId = "AUC3"))
+                       column(6, plotOutput(outputId = "AUC3")),
+                       hr(),
                      ),
                      fluidRow(
-                       column(6,tableOutput(outputId = "mc3")),
-                       column(6,tableOutput(outputId = "tablemet3")),
+                       column(6, offset= 2,tableOutput(outputId = "mc3")),
+                       column(3,tableOutput(outputId = "tablemet3")),
                        h2("\n"),
                        actionButton("go3", "Afficher les interprétations"),
                      )

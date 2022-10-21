@@ -52,7 +52,7 @@ server <- function(input, output) {
       pre1()
     })
     output$pre2 = renderText({
-      pre2()
+      pre2(input$ka)
     })
     output$pre3 = renderText({
       pre3()
@@ -63,7 +63,7 @@ server <- function(input, output) {
       rec1()
     })
     output$rec2 = renderText({
-      rec2()
+      rec2(input$ka)
     })
     output$rec3 = renderText({
       rec3()
@@ -74,7 +74,7 @@ server <- function(input, output) {
       fsco1()
     })
     output$fsco2 = renderText({
-      fsco2()
+      fsco2(input$ka)
     })
     output$fsco3 = renderText({
       fsco3()
@@ -85,7 +85,7 @@ server <- function(input, output) {
       acc1()
     })
     output$acc2 = renderText({
-      acc2()
+      acc2(input$ka)
     })
     output$acc3 = renderText({
       acc3()
@@ -96,7 +96,7 @@ server <- function(input, output) {
       cm1()
     })
     output$mc2 = renderTable({
-      cm2()
+      cm2(input$ka)
     })
     output$mc3 = renderTable({
       cm3()
@@ -129,7 +129,7 @@ server <- function(input, output) {
       table_metr1()
     })
     output$tablemet2 = renderTable({
-      table_metr2()
+      table_metr2(input$ka)
     })
     output$tablemet3 = renderTable({
       table_metr3()
