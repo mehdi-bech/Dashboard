@@ -78,6 +78,13 @@ fsco3 = function(){
   return (f1_score3)
 }
 
+spe3 = function(){
+  
+  # Spécifité ( TN /  (TN + FP) )
+  specificite3 = conf_mat_3[2,2] / (conf_mat_3[2,2]+conf_mat_3[2,1])
+  return(specificite3)
+}
+
 acc3 = function(){
   # Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
   accuracy3 = (conf_mat_3[1,1]+conf_mat_3[2,2]) / (conf_mat_3[1,1]+conf_mat_3[2,1]+
@@ -86,7 +93,7 @@ acc3 = function(){
 }
 
 table_metr3 = function(){
-  t = matrix(c('précision','sensibilité','F1-score','accuracy', pre3(),rec3(),fsco3(),acc3()),4,2)
+  t = matrix(c('précision','sensibilité','F1-score','spécificité','accuracy', pre3(),rec3(),fsco3(),spe3(),acc3()),5,2)
   colnames(t)= c('Métrique','Valeur')
   return(t)
 }

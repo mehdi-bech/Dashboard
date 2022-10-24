@@ -62,7 +62,9 @@ ui <- fluidPage(
                   br()
                       ),
               fluidRow(
-                  column(6,offset = 3, tableOutput(outputId = "oStat"))
+                  column(6,offset = 3, tableOutput(outputId = "oStat")),
+                  h2("\n"),
+                  actionButton("goUni", "Afficher les interprétations"),
                       )
             )
           )
@@ -89,7 +91,9 @@ ui <- fluidPage(
                       ),
               fluidRow(
                   column(5,offset = 2, tableOutput(outputId = "describetable")),
-                  column(2,tableOutput(outputId = "tab_test"))
+                  column(2,tableOutput(outputId = "tab_test")),
+                  h2("\n"),
+                  actionButton("goBiv", "Afficher les interprétations"),
               )
             )
             ))

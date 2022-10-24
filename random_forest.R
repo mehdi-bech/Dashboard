@@ -126,6 +126,29 @@ fsco2 = function(k){
   return (f1_score2)
 }
 
+spe2 = function(k){
+  classifierk = randomForest( x = training_set[-7],
+                              y = training_set$Inflammation.of.urinary.bladder,
+                              ntree = k)
+  
+  y_predk = predict(classifierk, newdata = test_set[-7])
+  yk = ifelse(y_predk > 0.5, 1, 0)
+  
+  true_y = as.numeric(test_set$Inflammation.of.urinary.bladder == 1)
+  
+  true_pos = (true_y==1) & (yk==1)
+  true_neg = (true_y==0) & (yk==0)
+  false_pos = (true_y==0) & (yk==1)
+  false_neg = (true_y==1) & (yk==0)
+  
+  conf_mat_k = matrix(c(sum(true_pos), sum(false_pos),
+                        sum(false_neg), sum(true_neg)), 2, 2)
+
+  # Spécifité ( TN /  (TN + FP) )
+  specificite2 = (conf_mat_k[2,2]) / (conf_mat_k[2,2]+conf_mat_k[2,1])
+  return (specificite2)
+}
+
 acc2 = function(k){
   classifierk = randomForest( x = training_set[-7],
                               y = training_set$Inflammation.of.urinary.bladder,
@@ -144,14 +167,13 @@ acc2 = function(k){
   conf_mat_k = matrix(c(sum(true_pos), sum(false_pos),
                         sum(false_neg), sum(true_neg)), 2, 2)
   # Accuracy ( (TP + TN) / (TP + FP + TN + FN) )
-  accuracy2 = (conf_mat_k[1,1]+conf_mat_k[2,2]) / (conf_mat_k[1,1]+conf_mat_k[2,1]+
-                                                    conf_mat_k[2,2]+conf_mat_k[1,2])
+  accuracy2 = (conf_mat_k[1,1]+conf_mat_k[2,2]) / (conf_mat_k[1,1]+conf_mat_k[2,1]+conf_mat_k[2,2]+conf_mat_k[1,2])
   return(accuracy2)
 }
 
 table_metr2 = function(k){
-  t = matrix(c('précision','sensibilité','F1-score','accuracy',
-               pre2(k),rec2(k),fsco2(k),acc2(k)),4,2)
+  t = matrix(c('précision','sensibilité','F1-score','spécificité','accuracy',
+               pre2(k),rec2(k),fsco2(k),spe2(k),acc2(k)),5,2)
   colnames(t)= c('Métrique','Valeur')
   return(t)
 }

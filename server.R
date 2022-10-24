@@ -93,6 +93,17 @@ server <- function(input, output, session) {
       fsco3()
     })
     
+    # spécifité
+    output$spe1 = renderText({
+      spe1()
+    })
+    output$spe2 = renderText({
+      spe2(input$ka)
+    })
+    output$spe3 = renderText({
+      spe3()
+    })
+    
     # accuracy
     output$acc1 = renderText({
       acc1()
@@ -149,10 +160,28 @@ server <- function(input, output, session) {
     })
     
     # Affichage des interprétations
+    
+    observeEvent(input$goUni, {
+      showModal(modalDialog(
+        size='l',
+        includeHTML("Interpretations\\Uni.html"),
+        footer = NULL,
+        easyClose = TRUE
+      ))
+    })
+    observeEvent(input$goBiv, {
+      showModal(modalDialog(
+        size='l',
+        includeHTML("Interpretations\\Biv.html"),
+        footer = NULL,
+        easyClose = TRUE
+      ))
+    })
+    
     observeEvent(input$go1, {
       showModal(modalDialog(
         size='l',
-        renderText("interp1.html"),
+        includeHTML("Interpretations\\Inter1.html"),
         footer = NULL,
         easyClose = TRUE
       ))
@@ -160,15 +189,16 @@ server <- function(input, output, session) {
     observeEvent(input$go2, {
       showModal(modalDialog(
         size='l',
-        renderText("interp2.html"),
+        includeHTML("Interpretations\\Inter2.html"),
         footer = NULL,
         easyClose = TRUE
       ))
     })
+    
     observeEvent(input$go3, {
       showModal(modalDialog(
         size='l',
-        renderText("interp3.html"),
+        includeHTML("Interpretations\\Inter3.html"),
         footer = NULL,
         easyClose = TRUE
       ))
