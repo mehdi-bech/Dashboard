@@ -1,8 +1,9 @@
-source("imports.R")
-source("univariate.R")
-source("Bivariate.R")
-source("regression_logistique.R")
-source("SVM.R")
+source("ML\\imports.R")
+source("EDA\\univariate.R")
+source("EDA\\Bivariate.R")
+source("ML\\regression_logistique.R")
+source("ML\\SVM.R")
+source("ML\\random_forest.R")
 
 server <- function(input, output, session) {
   
@@ -49,7 +50,7 @@ server <- function(input, output, session) {
         plt_box_bar(input$SelectBiv1,input$SelectBiv2)
     })
     
-    # Contexte 
+    # Contextes
     output$rl_info = renderText({
       context1()
     })
@@ -137,7 +138,7 @@ server <- function(input, output, session) {
       roc3()
     })
     
-    # Illustration de la valeur AUC
+    # AUC
     output$AUC1 = renderPlot({
       auc1()
     })

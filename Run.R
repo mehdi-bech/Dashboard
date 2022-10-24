@@ -1,4 +1,9 @@
+
 library(rsconnect)
-rsconnect::setAccountInfo(name='aymenbouhou',token='8E52029A954F453D8ABEAEFB5EF89EB8',secret='/gtMidCppIzGvdaIyFIzHXQ5cgv4prgMEsn52Lac')
+
+rsconnect::setAccountInfo(name='mehdi-bechnikha',
+                          token='3CB354CA3D4F8CEA723BAAF529454E23',
+                          secret='1C167YJI3iI3ya0VQMhukRDb1a5OVKnfOohwvhjK')
+
 library(shiny)
 runApp()

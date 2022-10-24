@@ -56,7 +56,7 @@ cm3 = function (){
   return(cbind(' '= c("Y=1", "Y=0"),conf_mat_3))
 }
 
-# Fonction des caracteristiques
+# Les métriques
 
 pre3 = function(){
   # Precision (TP / (TP + FP))
@@ -103,9 +103,7 @@ table_metr3 = function(){
 library(pROC)
 
 roc3 = function(){ 
-  
-  # Courbe ROC
-  
+
   y_pred3 = predict(classifier3, newdata = test_set[-7])
   y3 = ifelse(as.numeric( y_pred3) > 1.5, 1, 0)
 
@@ -120,11 +118,9 @@ roc3 = function(){
   return(r3)
 } 
 
-# Fonction Illustration de la valeur AUC
+# Fonction AUC
 
 auc3 = function(){ 
-  
-  # Illustration de la valeur AUC
   
   y_pred3 = predict(classifier3, newdata = test_set[-7])
   y3 = ifelse(as.numeric( y_pred3) > 1.5, 1, 0)

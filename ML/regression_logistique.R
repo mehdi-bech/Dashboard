@@ -58,7 +58,7 @@ cm1 = function (){
   return(cbind(' '= c("Y=1", "Y=0"),conf_mat_1))
 }
 
-# Fonction des caracteristiques
+# Les métriques
 
 pre1 = function(){
   # Precision (TP / (TP + FP))
@@ -93,6 +93,7 @@ acc1 = function(){
   return(accuracy1)
 }
 
+# Table rassemblant les métriques 
 table_metr1 = function(){
   t = matrix(c('précision','sensibilité','F1-score','spécificité','accuracy',pre1(),rec1(),fsco1(),spe1(),acc1()),5,2)
   colnames(t)= c('Métrique','Valeur')
@@ -105,8 +106,6 @@ library(pROC)
 
 roc1 = function(){ 
   
-  # Courbe ROC
-  
   library(pROC)
   par (pty = "s")
   r1 = roc(test_set[,7], y_pred1, 
@@ -118,11 +117,9 @@ roc1 = function(){
   return(r1)
 }
 
-# Fonction Illustration de la valeur AUC
+# Fonction AUC
 
 auc1 = function(){ 
-    
-    # Illustration de la valeur AUC
     
     par (pty = "s")
     a1 = roc(test_set[,7], y_pred1, 

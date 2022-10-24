@@ -23,22 +23,24 @@ split = sample.split(data$Inflammation.of.urinary.bladder, SplitRatio = 0.75)
 training_set = subset(data, split == TRUE)
 test_set = subset(data, split == FALSE)
 
-# Ajustement de la random forest à l'ensemble d'entraînement
-
-# Construction de la matrice de confusion
-
 # Fonction matrice de confusion
 
 library(randomForest)
 
 cm2 = function (k){
-
+  
+  # Ajustement de la random forest à l'ensemble d'entraînement avec k arbres
+  
   classifierk = randomForest( x = training_set[-7],
                               y = training_set$Inflammation.of.urinary.bladder,
                               ntree = k)
   
+  # Prédiction des résultats de l'ensemble de test
+  
   y_predk = predict(classifierk, newdata = test_set[-7])
   yk = ifelse(y_predk > 0.5, 1, 0)
+  
+  # Construction de la matrice de confusion
   
   true_y = as.numeric(test_set$Inflammation.of.urinary.bladder == 1)
   
@@ -56,7 +58,7 @@ cm2 = function (k){
   return(cbind(' '= c("Y=1", "Y=0"),conf_mat_k))
 }
 
-# Fonction des caracteristiques
+# Les métriques
 
 pre2 = function(k){
   classifierk = randomForest( x = training_set[-7],
@@ -184,13 +186,9 @@ library(pROC)
 
 roc2 = function(k){ 
   
-      # Ajustement de la random forest à l'ensemble d'entraînement avec k arbres
-      
       classifierk = randomForest( x = training_set[-7],
                                   y = training_set$Inflammation.of.urinary.bladder,
                                   ntree = k)
-      
-      # Prédiction des résultats de l'ensemble de test
       
       y_predk = predict(classifierk, newdata = test_set[-7])
       yk = ifelse(y_predk > 0.5, 1, 0)
@@ -206,22 +204,16 @@ roc2 = function(k){
                  percent = TRUE))
 }
 
-# Fonction illustrant la valeur AUC
+# Fonction AUC
 
 auc2 = function(k){ 
   
-      # Ajustement de la random forest à l'ensemble d'entraînement avec k arbres
-      
       classifierk = randomForest( x = training_set[-7],
                                   y = training_set$Inflammation.of.urinary.bladder,
                                   ntree = k)
       
-      # Prédiction des résultats de l'ensemble de test
-      
       y_predk = predict(classifierk, newdata = test_set[-7])
       yk = ifelse(y_predk > 0.5, 1, 0)
-      
-      # Illustration de la valeur AUC
       
       par (pty = "s")
       return(roc(test_set[,7], yk, 

@@ -1,4 +1,6 @@
-source("imports.R")
+
+source("ML\\imports.R")
+
 # Affichage de la table statistiques pour les données 
 
 statQ <- function(var)
@@ -43,7 +45,7 @@ plot_box_bar <- function(var)
             fig <- ggplot(df1, aes(x="", y=col)) + 
                 geom_boxplot(color="#C60800")+
                 xlab(var) + ylab("Valeur")+
-                ggtitle(paste('Boîte à moustaches de \n', var))+
+                ggtitle(paste('Boîte à moustaches de ', var))+
                 ggeasy::easy_center_title()
         
         
@@ -59,7 +61,7 @@ plot_box_bar <- function(var)
                 theme_classic()+
                 theme(axis.text = element_text(size = 11))+
                 xlab(var) + ylab("Fréquence")+
-                ggtitle(paste('Diagramme en colonnes de \n', var))+
+                ggtitle(paste('Diagramme en colonnes de ', var))+
                 ggeasy::easy_center_title()
     
         return(fig)

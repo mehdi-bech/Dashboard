@@ -1,8 +1,11 @@
-source("imports.R")
-source("Bivariate.R")
-source("random_forest.R")
-source("regression_logistique.R")
-source("SVM.R")
+
+source("ML\\imports.R")
+source("EDA\\univariate.R")
+source("EDA\\Bivariate.R")
+source("ML\\regression_logistique.R")
+source("ML\\SVM.R")
+source("ML\\random_forest.R")
+
 choi=function()
 {
   a=sort(names(df)) != input$SelectBiv1
@@ -25,12 +28,12 @@ ui <- fluidPage(
 
         sidebarPanel( 
           
-          includeHTML( "Objectif text.html")         
+          includeHTML( "html files\\Objectif text.html")         
           ,
         ),
         mainPanel(
           h4(
-          includeHTML("table.html"),
+          includeHTML("html files\\table.html"),
           h3("\n"),
           actionButton("go", "Afficher la Dataset")
             )

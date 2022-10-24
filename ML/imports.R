@@ -1,4 +1,5 @@
 # Chargement des librairies
+
 library(shiny)
 library(markdown)
 library(shinythemes)
@@ -34,10 +35,5 @@ thematic::thematic_shiny(font = "auto")
 #Importation des donnees
 
 df <- read.csv("Data\\Inflammation.csv", check.names = FALSE)
-
-# Defining categorical variables
-categorical <- c('Occurrence of nausea', 'Lumbar pain', 'Urine pushing (continuous need for urination)',
-                 'Micturition pains ', 'Burning of urethra, itch, swelling of urethra outlet ', 
-                 'Inflammation of urinary bladder ' )
 
 a=as.list(names(df))
