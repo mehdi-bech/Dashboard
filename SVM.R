@@ -119,6 +119,9 @@ auc3 = function(){
   
   # Illustration de la valeur AUC
   
+  y_pred3 = predict(classifier3, newdata = test_set[-7])
+  y3 = ifelse(as.numeric( y_pred3) > 1.5, 1, 0)
+  
   par (pty = "s")
   a3 = roc(test_set[,7], y3, 
            plot= TRUE, 

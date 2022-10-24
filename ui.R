@@ -71,24 +71,25 @@ ui <- fluidPage(
           sidebarLayout(
             sidebarPanel(
               selectInput("SelectBiv1",
-                          label = h4("Sélectionner la première variable pour l'analyse bivariée"),
+                          label = h4("Sélectionner la première variable :"),
                           choices = a,
                           selected=1
                                 ),
               selectInput("SelectBiv2",
-                          label = h4("Sélectionner la seconde variable pour l'analyse bivariée"),
+                          label = h4("Sélectionner la seconde variable :"),
                           choices =  a,
                           selected=2
                                 )
           ),
             mainPanel(
               fluidRow(
-                  column(6, plotOutput(outputId = "plt_box_bar")),
-                  column(6, tableOutput(outputId = "describetable")),
+                  column(5,offset= 3, plotOutput(outputId = "plt_box_bar")),
+                  
                   hr(),
                       ),
               fluidRow(
-                  column(6,tableOutput(outputId = "tab_test"))
+                  column(5,offset = 2, tableOutput(outputId = "describetable")),
+                  column(2,tableOutput(outputId = "tab_test"))
               )
             )
             ))
